@@ -33,4 +33,18 @@ defmodule Poker.CardTest do
       assert Card.parse(card_print) == %Card{rank: 11, suit: "H", value: "J"}
     end
   end
+
+  describe "Poker.Card.sort/2" do
+    test "when left is greater than or equal to right" do
+      left_card = Card.parse("5S")
+      right_card = Card.parse("3H")
+      assert Card.sort(left_card, right_card)
+    end
+
+    test "when left is not greater than or equal to right" do
+      left_card = Card.parse("7C")
+      right_card = Card.parse("TD")
+      refute Card.sort(left_card, right_card)
+    end
+  end
 end
