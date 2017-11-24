@@ -5,32 +5,32 @@ defmodule Poker.CardTest do
   describe "Poker.Card.parse/1" do
     test "a card with suit clubs" do
       card_print = "2C"
-      assert Card.parse(card_print) == %Card{rank: 2, suit: "C", value: "2"}
+      assert {:card, "2", "C", 2} == Card.parse(card_print)
     end
 
     test "a card with suit diamonds" do
       card_print = "3D"
-      assert Card.parse(card_print) == %Card{rank: 3, suit: "D", value: "3"}
+      assert {:card, "3", "D", 3} == Card.parse(card_print)
     end
 
     test "a card with suit hearts" do
       card_print = "4H"
-      assert Card.parse(card_print) == %Card{rank: 4, suit: "H", value: "4"}
+      assert {:card, "4", "H", 4} == Card.parse(card_print)
     end
 
     test "a card with suit spades" do
       card_print = "5S"
-      assert Card.parse(card_print) == %Card{rank: 5, suit: "S", value: "5"}
+      assert {:card, "5", "S", 5} == Card.parse(card_print)
     end
 
     test "a card with number value" do
       card_print = "6C"
-      assert Card.parse(card_print) == %Card{rank: 6, suit: "C", value: "6"}
+      assert {:card, "6", "C", 6} == Card.parse(card_print)
     end
 
     test "a card with symbol value" do
       card_print = "JH"
-      assert Card.parse(card_print) == %Card{rank: 11, suit: "H", value: "J"}
+      assert {:card, "J", "H", 11} == Card.parse(card_print)
     end
   end
 
