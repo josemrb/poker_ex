@@ -35,6 +35,24 @@ defmodule Poker.CardTest do
     end
   end
 
+  describe "Poker.Card.rank/1" do
+    test "return value" do
+      card_print = "JH"
+      card = Card.parse(card_print)
+      assert 11 = Card.rank(card)
+    end
+  end
+
+  describe "Poker.Card.cards_rank/1" do
+    test "return value" do
+      card_print = "JH"
+      card = Card.parse(card_print)
+      card2_print = "6C"
+      card2 = Card.parse(card2_print)
+      assert [11, 6] = Card.cards_rank([card, card2])
+    end
+  end
+
   describe "Poker.Card.sort/2" do
     test "when left is greater than or equal to right" do
       left_card = Card.parse("5S")

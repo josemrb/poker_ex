@@ -1,29 +1,12 @@
 defmodule Poker.Hand.Rank do
+  @moduledoc"""
+  Hand Rank related functions.
+  """
   alias Poker.Card
 
-  def to_string({:hand_rank, name, _, card_ranks}) do
-    case name do
-      :straight_flush ->
-        "straight flush: #{inspect(card_ranks)}"
-      :four_of_a_kind ->
-        "four of a kind: #{inspect(card_ranks)}"
-      :full_house ->
-        "full house: #{inspect(card_ranks)}"
-      :flush ->
-        "flush: #{inspect(card_ranks)}"
-      :straight ->
-        "straight: #{inspect(card_ranks)}"
-      :three_of_a_kind ->
-        "three of a kind: #{inspect(card_ranks)}"
-      :two_pairs ->
-        "two pairs: #{inspect(card_ranks)}"
-      :one_pair ->
-        "one_pair: #{inspect(card_ranks)}"
-      :high_card ->
-        "high card: #{inspect(card_ranks)}"
-    end
-  end
-
+  @doc"""
+  Evaluate a list of :card tuples and returns a :hand_rank tuple.
+  """
   def evaluate_cards([{:card, _, suit, rank}, {:card, _, suit, rank2},
                  {:card, _, suit, rank3}, {:card, _, suit, rank4}, {:card, _, suit, rank5}] = cards)
   when rank > rank2 > rank3 > rank4 > rank5
@@ -130,5 +113,33 @@ defmodule Poker.Hand.Rank do
     else
       [List.first(ranks)]
     end
+  end
+
+  @doc"""
+  Return a binary which corresponds to the text representation of the :hand_rank tuple.
+
+  ## Examples
+
+  iex> Rank.to_string({:hand_rank, :full_house, 8, [9, 7]})
+  "full house: 9, 7"
+  """
+  def to_string({:hand_rank, name, _, card_ranks}) do
+    name_to_string(name) <> ": " <> card_ranks_to_string(card_ranks)
+  end
+
+  defp name_to_string(:straight_flush), do: "straight flush"
+  defp name_to_string(:four_of_a_kind), do: "four of a kind"
+  defp name_to_string(:full_house), do: "full house"
+  defp name_to_string(:flush), do: "flush"
+  defp name_to_string(:straight), do: "straight"
+  defp name_to_string(:three_of_a_kind), do: "three of a kind"
+  defp name_to_string(:two_pairs), do: "two pairs"
+  defp name_to_string(:one_pair), do: "one_pair"
+  defp name_to_string(:high_card), do: "high card"
+
+  defp card_ranks_to_string(card_ranks) do
+    card_ranks
+    |> Enum.map(&Integer.to_string/1)
+    |> Enum.join(", ")
   end
 end

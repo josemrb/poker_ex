@@ -1,6 +1,6 @@
 defmodule Poker.Card do
   @moduledoc"""
-  Card related functions
+  Card related functions.
   """
 
   @suits ["C", "D", "H", "S"]
@@ -21,13 +21,22 @@ defmodule Poker.Card do
     {:card, value, suit, find_card_rank(value)}
   end
 
+  @doc """
+  Return the field rank from a :card tuple.
+  """
   def rank({:card, _, _, rank}), do: rank
 
-  def cards_rank(cards) do
+  @doc """
+  Return the field rank from a list of :card tuples.
+  """
+  def cards_rank(cards) when is_list(cards) do
     cards
     |> Enum.map(&rank/1)
   end
 
+  @doc """
+  Compare two :card tuples and returns :true if the first has a rank greater than or equal to the second.
+  """
   def sort({:card, _, _, rank}, {:card, _, _, rank2}) do
     rank >= rank2
   end

@@ -1,6 +1,7 @@
 defmodule Poker.HandTest do
   use ExUnit.Case, async: true
   alias Poker.Hand
+  doctest Poker.Hand
 
   describe "Poker.Hand.parse/1" do
     test "return a tuple" do
