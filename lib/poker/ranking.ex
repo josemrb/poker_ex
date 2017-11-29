@@ -15,15 +15,11 @@ defmodule Poker.Ranking do
 
   defp compare_card_rank_values(card_ranks, card_ranks2) do
     result = compare_lists(card_ranks, card_ranks2, &integer_comparator/2)
-    Enum.reduce_while(result, hd(result), fn(item, acc) ->
-      if item == 0 do
+    Enum.reduce_while(result, 0, fn(item, acc) ->
+      if item == acc do
         {:cont, acc}
       else
-        if item == acc do
-          {:cont, acc}
-        else
-          {:halt, item}
-        end
+        {:halt, item}
       end
     end)
   end
