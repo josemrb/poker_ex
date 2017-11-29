@@ -1,6 +1,7 @@
 defmodule Poker.CardTest do
   use ExUnit.Case, async: true
   alias Poker.Card
+  doctest Poker.Card
 
   describe "Poker.Card.parse/1" do
     test "a card with suit clubs" do
