@@ -134,7 +134,7 @@ defmodule Poker.Hand.Rank do
   defp name_to_string(:straight), do: "straight"
   defp name_to_string(:three_of_a_kind), do: "three of a kind"
   defp name_to_string(:two_pairs), do: "two pairs"
-  defp name_to_string(:one_pair), do: "one_pair"
+  defp name_to_string(:one_pair), do: "one pair"
   defp name_to_string(:high_card), do: "high card"
 
   defp card_ranks_to_string(card_ranks) do

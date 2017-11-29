@@ -1,5 +1,6 @@
 defmodule Poker.Hand do
   @moduledoc"""
+  Hand related functions.
   """
 
   alias Poker.Card
