@@ -6,6 +6,7 @@ defmodule Poker.Mixfile do
       app: :poker,
       version: "0.1.0",
       elixir: "~> 1.5",
+      escript: [main_module: Poker.CLI],
       preferred_cli_env: [coveralls: :test],
       start_permanent: Mix.env == :prod,
       test_coverage: [tool: ExCoveralls],
